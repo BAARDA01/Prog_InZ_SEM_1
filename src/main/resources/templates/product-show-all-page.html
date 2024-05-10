@@ -2,7 +2,9 @@
 	
 <body>
 	
-	<p>Visu produktu dati no JAVA:</p>
+	<p th:text="${msg}"></p>
+
+	<table border="1">
 	
 	<table>
 		<tr th:each="tempP : ${mydata}">

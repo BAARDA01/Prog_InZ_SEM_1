@@ -3,7 +3,7 @@
 <body>
 	<p>Please insert product</p>
 
-	<form th:action="@{/product/crud/insert}" method="post" th:object="${product}">
+	<form th:action="@{/product/crud/update/__${id}__}" method="post" th:object="${product}">
 
 		<table>
 			<tr>
@@ -27,12 +27,12 @@
 			<tr>
 				<td>Quantity</td>
 				<td><input type="text" th:field="*{quantity}" /> </td>
-				<td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantiy}"></td>
+				<td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></td>
 			</tr>
 
 		</table>
 
-		<button type="submit">Save</button>
+		<button type="submit">Update</button>
 
 
 
