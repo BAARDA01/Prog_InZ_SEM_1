@@ -47,10 +47,43 @@ public class ProductCRUDController {
 		}
 	}
 	
+	@GetMapping("/all/{id}") //localhost:8080/product/crud/all/2
+	public String getProductCRUDById(@PathVariable("id") int id, Model model)
+	{
+		try
+		{
+			Product foundProduct = crudService.retrieveById(id);
+			model.addAttribute("mydata", foundProduct);
+			return "product-show-one-page";//tiks parādīta product-show-one-page.html lapa
+		}
+		catch (Exception e) {
+			model.addAttribute("mydata", e.getMessage());
+			return "error-page";
+		}
+	}
 	
+	@GetMapping("/insert") //localhost:8080/product/crud/insert
+	public String getProductCRUDInsert(Model model) {
+		
+		model.addAttribute("product", new Product());
+		return "product-insert-page"; //tiks parādīta product-insert-page.html lapa ar iedotu tuksu produktu
+		
+	}
 	
-	
-	
+	@PostMapping("/insert")
+	public String postProductCRUDInsert(@Valid Product product, BindingResult result) {//ienāk aizpildītais produkts
+		//vai ir kādi validācijas pāŗkāpumi
+		if(result.hasErrors())
+		{
+			return "product-insert-page"; //turpinām palikt product-insert-page.html lapā
+		}
+		else
+		{
+			crudService.create(product);
+			return "redirect:/product/crud/all";
+		}
+		
+	}
 	
 	
 
