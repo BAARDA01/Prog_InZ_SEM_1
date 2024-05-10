@@ -67,4 +67,18 @@ public class ProductFilterController {
 		}
 	}
 
+	@GetMapping("/stat/total") //localhost:8080/product/filter/stat/total
+	public String getproductFilterStatTotal(Model model) {
+		try
+		{
+			float result = filterService.calculateTotalValueOfProducts();
+			model.addAttribute("mydata", "Total " + result + " eur");
+			return "hello-msg-page";//tiks parādīta hello-msg-page.html, ar padotajiem datiem
+		}
+		catch (Exception e) {
+			model.addAttribute("mydata", e.getMessage());
+			return "error-page";
+		}
+	}
+	
 }
