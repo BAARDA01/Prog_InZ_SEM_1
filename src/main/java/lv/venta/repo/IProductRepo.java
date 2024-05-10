@@ -24,7 +24,7 @@ public interface IProductRepo extends CrudRepository<Product, Integer>{
 	ArrayList<Product> findByQuantityLessThan(int threshold);
 	//public abstract jau pēc noeklusejuma
 	//SELECT * FROM product_table WHERE UPPER(title) LIKE UPPER(1.arguments) OR UPPER(description) LIKE UPPER(2.arguments)
-	ArrayList<Product> findByTitleIgnoreCaseLikeOrDescriptionIgnoreCaseLike(String phrase, String phrase2);
+	ArrayList<Product> findByTitleIgnoreCaseContainingOrDescriptionIgnoreCaseContaining(String phrase, String phrase2);
 
 	//public abstract jau pēc noeklusejuma
 	//bet vaicajumu veidojam paši
